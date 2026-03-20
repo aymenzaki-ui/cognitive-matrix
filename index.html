@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="theme-color" content="#0a0e17">
+<meta name="description" content="Cognitive Matrix Consulting — د. أيمن زكي، استشاري صحة نفسية معتمد دولياً في القاهرة. جلسات فردية، أسرية، تقييم نفسي. مدينة نصر، التجمع الخامس، أونلاين.">
+<meta name="keywords" content="استشاري نفسي, علاج نفسي, CBT, DBT, قلق, اكتئاب, علاج الصدمات, مدينة نصر, التجمع الخامس, أونلاين, د. أيمن زكي">
+<meta property="og:title" content="Cognitive Matrix Consulting — د. أيمن زكي">
+<meta property="og:description" content="استشاري صحة نفسية معتمد دولياً. CBT · DBT · ACT · EMDR · NLP · Schema Therapy · Coaching">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://cognitivematrixconsulting.com">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cognitivematrixconsulting.com">
+<title>Cognitive Matrix Consulting | د. أيمن زكي — استشاري صحة نفسية معتمد دولياً</title>
+
+<!-- PWA Manifest inline -->
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Cognitive Matrix">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Tajawal:wght@300;400;500;700&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-border: rgba(201,168,76,0.3);
+    --dark: #0a0e17;
+    --dark-2: #0f1520;
+    --dark-3: #141b2d;
+    --dark-card: #111827;
+    --white: #ffffff;
+    --white-soft: rgba(255,255,255,0.85);
+    --white-dim: rgba(255,255,255,0.5);
+    --white-faint: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Tajawal', sans-serif;
+    background: var(--dark);
+    color: var(--white);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--dark); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.2rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(10,14,23,0.88);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--gold-border);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1.1;
+  }
+  .nav-logo .en {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem; color: var(--gold); letter-spacing: 0.12em;
+  }
+  .nav-logo .ar {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 0.75rem; color: var(--white-dim); letter-spacing: 0.04em;
+  }
+
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    color: var(--white-dim); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; right: 0;
+    width: 0; height: 1px; background: var(--gold);
+    transition: width 0.3s ease;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--gold); color: var(--dark);
+    padding: 0.55rem 1.4rem; border: none; border-radius: 2px;
+    font-family: 'Tajawal', sans-serif; font-size: 0.9rem; font-weight: 700;
+    cursor: pointer; transition: all 0.25s ease;
+    text-decoration: none; display: inline-block;
+  }
+  .nav-cta:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--gold); border-radius: 1px;
+    transition: all 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 8rem 5% 4rem;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    animation: gridPulse 8s ease-in-out infinite;
+  }
+
+  @keyframes gridPulse {
+    0%,100% { opacity: 0.5; } 50% { opacity: 1; }
+  }
+
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbFloat 12s ease-in-out infinite;
+  }
+  .hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%);
+    top: -100px; right: -150px;
+  }
+  .hero-orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(30,60,120,0.25) 0%, transparent 70%);
+    bottom: 50px; left: -100px;
+    animation-delay: -6s;
+  }
+
+  @keyframes orbFloat {
+    0%,100% { transform: translate(0,0) scale(1); }
+    33% { transform: translate(20px,-30px) scale(1.05); }
+    66% { transform: translate(-15px,20px) scale(0.95); }
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 900px; text-align: center;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    padding: 0.4rem 1.2rem; border-radius: 30px;
+    font-size: 0.8rem; color: var(--gold); letter-spacing: 0.08em;
+    margin-bottom: 2rem;
+    animation: fadeDown 0.8s ease both;
+  }
+  .hero-badge .dot {
+    width: 6px; height: 6px; background: var(--gold);
+    border-radius: 50%; animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.7); }
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 900; line-height: 1.1;
+    color: var(--white);
+    animation: fadeDown 0.8s 0.2s ease both;
+  }
+  .hero-name span { color: var(--gold); }
+
+  .hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.85rem, 2vw, 1.1rem);
+    color: var(--gold); letter-spacing: 0.2em;
+    text-transform: uppercase; margin: 1rem 0 1.5rem;
+    animation: fadeDown 0.8s 0.4s ease both;
+  }
+
+  .hero-desc {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--white-soft); max-width: 650px;
+    margin: 0 auto 2.5rem; font-weight: 300;
+    animation: fadeDown 0.8s 0.6s ease both;
+  }
+
+  .hero-methods {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 0.6rem; margin-bottom: 3rem;
+    animation: fadeDown 0.8s 0.8s ease both;
+  }
+  .method-tag {
+    background: var(--white-faint);
+    border: 1px solid var(--gold-border);
+    color: var(--gold-light); padding: 0.3rem 0.9rem;
+    border-radius: 2px; font-size: 0.8rem;
+    font-family: 'Cinzel', serif; letter-spacing: 0.06em;
+    transition: all 0.2s;
+  }
+  .method-tag:hover {
+    background: var(--gold-dim); transform: translateY(-2px);
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    animation: fadeDown 0.8s 1s ease both;
+  }
+
+  .btn-primary {
+    background: var(--gold); color: var(--dark);
+    padding: 1rem 2.5rem; border: none; border-radius: 2px;
+    font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 700;
+    cursor: pointer; transition: all 0.3s ease;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    text-decoration: none;
+  }
+  .btn-primary:hover {
+    background: var(--gold-light); transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(201,168,76,0.35);
+  }
+
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 1rem 2.5rem;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 2px;
+    font-family: 'Tajawal', sans-serif; font-size: 1rem; font-weight: 500;
+    cursor: pointer; transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  .btn-outline:hover {
+    border-color: var(--gold); color: var(--gold);
+    transform: translateY(-3px);
+  }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 4rem;
+    margin-top: 5rem; padding-top: 3rem;
+    border-top: 1px solid var(--gold-border);
+    animation: fadeUp 1s 1.2s ease both;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--white-dim); margin-top: 0.3rem; }
+
+  /* ─── SECTION BASE ─── */
+  section { padding: 6rem 5%; position: relative; }
+  section:nth-child(even) { background: var(--dark-2); }
+
+  .section-header { text-align: center; margin-bottom: 4rem; }
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem; letter-spacing: 0.25em;
+    color: var(--gold); text-transform: uppercase; margin-bottom: 1rem;
+    display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; line-height: 1.2;
+  }
+  .section-line {
+    width: 60px; height: 2px; background: var(--gold);
+    margin: 1.5rem auto 0;
+  }
+
+  /* ─── ABOUT ─── */
+  #about .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto;
+  }
+  .about-visual {
+    position: relative;
+  }
+  .about-img-frame {
+    width: 100%; aspect-ratio: 3/4; max-height: 520px;
+    background: var(--dark-card);
+    border: 1px solid var(--gold-border);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .about-img-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.08) 0%, transparent 60%);
+  }
+  .about-initials {
+    font-family: 'Playfair Display', serif;
+    font-size: 6rem; font-weight: 900;
+    color: var(--gold); opacity: 0.15;
+    user-select: none;
+  }
+  .about-corner {
+    position: absolute;
+    width: 60px; height: 60px;
+    border-color: var(--gold);
+    border-style: solid;
+  }
+  .about-corner.tl { top: 12px; right: 12px; border-width: 2px 0 0 2px; border-right: none; border-bottom: none; }
+  .about-corner.br { bottom: 12px; left: 12px; border-width: 0 2px 2px 0; border-left: none; border-top: none; }
+
+  .about-cert {
+    position: absolute; bottom: -20px; left: -20px;
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    padding: 1rem 1.4rem; border-radius: 4px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+  }
+  .about-cert-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; font-weight: 900; color: var(--gold);
+  }
+  .about-cert-text { font-size: 0.75rem; color: var(--white-dim); }
+
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3vw, 2.5rem);
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .about-text .subtitle {
+    color: var(--gold); font-size: 0.95rem;
+    margin-bottom: 1.5rem; font-weight: 500;
+  }
+  .about-text p { color: var(--white-soft); margin-bottom: 1.2rem; font-weight: 300; }
+
+  .about-specialties {
+    display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem;
+  }
+  .specialty {
+    background: var(--white-faint); border: 1px solid var(--gold-border);
+    padding: 0.35rem 0.9rem; border-radius: 2px;
+    font-size: 0.82rem; color: var(--white-soft);
+  }
+
+  /* ─── SERVICES ─── */
+  #services .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--dark-card);
+    border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2rem;
+    transition: all 0.35s ease;
+    cursor: pointer; position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.4s ease;
+  }
+  .service-card:hover { transform: translateY(-6px); border-color: var(--gold); }
+  .service-card:hover::before { width: 100%; }
+  .service-card:hover .service-icon { background: var(--gold); color: var(--dark); }
+
+  .service-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    border-radius: 3px; display: flex; align-items: center;
+    justify-content: center; margin-bottom: 1.5rem;
+    font-size: 1.4rem; transition: all 0.3s;
+  }
+  .service-name {
+    font-family: 'Tajawal', sans-serif;
+    font-size: 1.15rem; font-weight: 700; margin-bottom: 0.6rem;
+  }
+  .service-desc { color: var(--white-dim); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .service-meta {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .service-duration {
+    font-size: 0.8rem; color: var(--gold);
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .service-book {
+    background: none; border: 1px solid var(--gold-border);
+    color: var(--gold); padding: 0.4rem 1rem;
+    border-radius: 2px; font-family: 'Tajawal', sans-serif;
+    font-size: 0.82rem; cursor: pointer;
+    transition: all 0.2s;
+  }
+  .service-book:hover { background: var(--gold); color: var(--dark); }
+
+  /* ─── LOCATIONS ─── */
+  #locations .locations-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2rem; max-width: 1000px; margin: 0 auto;
+  }
+  .location-card {
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2.5rem 2rem; text-align: center;
+    transition: all 0.3s; position: relative;
+  }
+  .location-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .location-icon {
+    font-size: 2.5rem; margin-bottom: 1rem;
+  }
+  .location-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; font-weight: 700; color: var(--gold); margin-bottom: 0.5rem;
+  }
+  .location-detail { color: var(--white-dim); font-size: 0.9rem; }
+
+  /* ─── BOOKING FORM ─── */
+  #booking {
+    background: var(--dark-3);
+  }
+  .booking-wrapper {
+    max-width: 700px; margin: 0 auto;
+  }
+  .form-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+  }
+  .form-group {
+    display: flex; flex-direction: column; gap: 0.5rem;
+  }
+  .form-group.full { grid-column: 1 / -1; }
+
+  label {
+    font-size: 0.85rem; color: var(--white-dim); font-weight: 500;
+  }
+  input, select, textarea {
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    color: var(--white); padding: 0.85rem 1rem;
+    border-radius: 2px; font-family: 'Tajawal', sans-serif; font-size: 0.95rem;
+    transition: border-color 0.2s; outline: none; width: 100%;
+    appearance: none; -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--gold);
+  }
+  input::placeholder, textarea::placeholder { color: var(--white-dim); }
+  select { cursor: pointer; }
+  select option { background: var(--dark-card); }
+  textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    background: var(--gold); color: var(--dark);
+    padding: 1.1rem 3rem; border: none; border-radius: 2px;
+    font-family: 'Tajawal', sans-serif; font-size: 1.05rem; font-weight: 700;
+    cursor: pointer; width: 100%; margin-top: 0.5rem;
+    transition: all 0.3s ease; display: flex; align-items: center;
+    justify-content: center; gap: 0.5rem;
+  }
+  .form-submit:hover {
+    background: var(--gold-light);
+    box-shadow: 0 10px 35px rgba(201,168,76,0.4);
+    transform: translateY(-2px);
+  }
+
+  .whatsapp-note {
+    text-align: center; margin-top: 1.2rem;
+    font-size: 0.82rem; color: var(--white-dim);
+  }
+  .whatsapp-note span { color: #25d366; }
+
+  /* ─── TIPS ─── */
+  #tips .tips-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+  }
+  .tip-card {
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2rem;
+    transition: all 0.3s;
+  }
+  .tip-card:hover { border-color: var(--gold); transform: translateY(-3px); }
+  .tip-cat {
+    font-size: 0.75rem; color: var(--gold);
+    letter-spacing: 0.15em; text-transform: uppercase;
+    margin-bottom: 0.8rem; font-family: 'Cinzel', serif;
+  }
+  .tip-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem; font-weight: 700; margin-bottom: 0.8rem;
+  }
+  .tip-body { color: var(--white-dim); font-size: 0.9rem; line-height: 1.8; }
+
+  /* ─── REVIEWS ─── */
+  #reviews .reviews-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 0 auto;
+  }
+  .review-card {
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2rem;
+    transition: all 0.3s;
+  }
+  .review-card:hover { border-color: var(--gold); }
+  .review-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .review-text {
+    color: var(--white-soft); font-size: 0.92rem;
+    line-height: 1.8; margin-bottom: 1.5rem;
+    font-style: italic;
+  }
+  .review-text::before { content: '"'; font-size: 2rem; color: var(--gold); line-height: 0; vertical-align: -0.5rem; margin-left: 0.3rem; }
+  .review-author {
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; color: var(--gold); font-size: 0.9rem;
+  }
+  .review-name { font-weight: 600; font-size: 0.95rem; }
+
+  /* ─── CONTACT ─── */
+  #contact .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; max-width: 1000px; margin: 0 auto; align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; margin-bottom: 1.5rem;
+  }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.5rem;
+  }
+  .contact-ico {
+    width: 42px; height: 42px; min-width: 42px;
+    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    border-radius: 3px; display: flex; align-items: center;
+    justify-content: center; font-size: 1.1rem;
+  }
+  .contact-label { font-size: 0.8rem; color: var(--white-dim); }
+  .contact-value { font-weight: 500; font-size: 0.95rem; }
+  .contact-value a { color: var(--white); text-decoration: none; }
+  .contact-value a:hover { color: var(--gold); }
+
+  .contact-cta {
+    background: var(--dark-card); border: 1px solid var(--gold-border);
+    border-radius: 4px; padding: 2.5rem; text-align: center;
+  }
+  .contact-cta h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; margin-bottom: 0.8rem;
+  }
+  .contact-cta p { color: var(--white-dim); font-size: 0.9rem; margin-bottom: 2rem; }
+  .wa-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: #25d366; color: #fff;
+    padding: 1rem 2rem; border-radius: 3px;
+    font-family: 'Tajawal', sans-serif; font-weight: 700;
+    text-decoration: none; font-size: 1rem;
+    transition: all 0.3s; margin-bottom: 1rem;
+    width: 100%; justify-content: center;
+  }
+  .wa-btn:hover { background: #1ebe5c; transform: translateY(-2px); box-shadow: 0 8px 25px rgba(37,211,102,0.35); }
+  .call-btn {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: transparent; color: var(--white);
+    padding: 1rem 2rem; border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.2);
+    font-family: 'Tajawal', sans-serif; font-weight: 600;
+    text-decoration: none; font-size: 1rem;
+    transition: all 0.3s; width: 100%; justify-content: center;
+  }
+  .call-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid var(--gold-border);
+    padding: 3rem 5% 2rem;
+    text-align: center;
+  }
+  .footer-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem; color: var(--gold);
+    letter-spacing: 0.15em; margin-bottom: 0.5rem;
+  }
+  .footer-sub { color: var(--white-dim); font-size: 0.85rem; margin-bottom: 2rem; }
+  .footer-bottom {
+    color: rgba(255,255,255,0.2); font-size: 0.78rem;
+    padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  /* ─── FLOATING WA BTN ─── */
+  .floating-wa {
+    position: fixed; bottom: 28px; left: 28px; z-index: 99;
+    width: 60px; height: 60px; background: #25d366;
+    border-radius: 50%; display: flex; align-items: center;
+    justify-content: center; font-size: 1.8rem;
+    box-shadow: 0 6px 30px rgba(37,211,102,0.5);
+    text-decoration: none; animation: waBounce 3s ease infinite;
+    transition: transform 0.2s;
+  }
+  .floating-wa:hover { transform: scale(1.1); }
+  @keyframes waBounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 100px; left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--dark-card); border: 1px solid var(--gold);
+    color: var(--white); padding: 1rem 2rem; border-radius: 4px;
+    font-size: 0.95rem; z-index: 200;
+    opacity: 0; transition: all 0.4s ease;
+    pointer-events: none; text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  }
+  .toast.show {
+    opacity: 1; transform: translateX(-50%) translateY(0);
+  }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    position: fixed; inset: 0; z-index: 99;
+    background: var(--dark);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.4s ease;
+  }
+  .mobile-menu.open { transform: translateX(0); }
+  .mobile-menu a {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--white);
+    text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--gold); }
+  .mobile-close {
+    position: absolute; top: 1.5rem; left: 1.5rem;
+    background: none; border: none; color: var(--white-dim);
+    font-size: 1.8rem; cursor: pointer;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #about .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { max-width: 380px; margin: 0 auto; }
+    #locations .locations-grid { grid-template-columns: 1fr; }
+    #contact .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .nav-links, .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    .hero-stats { gap: 2rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-group.full { grid-column: auto; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-stats { flex-direction: column; gap: 1.5rem; }
+    nav { padding: 1rem 4%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════
+     NAV
+══════════════════════════════════════════════ -->
+<nav id="navbar">
+  <div class="nav-logo">
+    <span class="en">COGNITIVE MATRIX</span>
+    <span class="ar">استشارات الصحة النفسية</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">عن الدكتور</a></li>
+    <li><a href="#services">الخدمات</a></li>
+    <li><a href="#locations">المواقع</a></li>
+    <li><a href="#tips">نصائح</a></li>
+    <li><a href="#reviews">التقييمات</a></li>
+    <li><a href="#contact">تواصل</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">احجز الآن</a>
+  <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" onclick="closeMobile()">عن الدكتور</a>
+  <a href="#services" onclick="closeMobile()">الخدمات</a>
+  <a href="#locations" onclick="closeMobile()">المواقع</a>
+  <a href="#tips" onclick="closeMobile()">نصائح نفسية</a>
+  <a href="#reviews" onclick="closeMobile()">التقييمات</a>
+  <a href="#booking" onclick="closeMobile()">احجز جلسة</a>
+  <a href="#contact" onclick="closeMobile()">تواصل معنا</a>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span class="dot"></span>
+      استشاري معتمد دولياً — متاح الآن للحجز
+    </div>
+
+    <h1 class="hero-name">د. <span>أيمن زكي</span></h1>
+    <p class="hero-title">Cognitive Matrix Consulting</p>
+    <p class="hero-desc">
+      استشاري صحة نفسية معتمد دولياً متخصص في العلاج المعرفي السلوكي وعلاج الصدمات والتنمية الشخصية — في القاهرة وعبر الإنترنت.
+    </p>
+
+    <div class="hero-methods">
+      <span class="method-tag">CBT</span>
+      <span class="method-tag">DBT</span>
+      <span class="method-tag">ACT</span>
+      <span class="method-tag">EMDR</span>
+      <span class="method-tag">NLP</span>
+      <span class="method-tag">Schema Therapy</span>
+      <span class="method-tag">Coaching</span>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">🗓 احجز جلستك الآن</a>
+      <a href="#services" class="btn-outline">تعرف على الخدمات</a>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">+1000</div>
+        <div class="stat-label">جلسة ناجحة</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">7+</div>
+        <div class="stat-label">مناهج علاجية معتمدة</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label">مواقع للخدمة</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-img-frame">
+        <div class="about-initials">AZ</div>
+        <div class="about-corner tl"></div>
+        <div class="about-corner br"></div>
+      </div>
+      <div class="about-cert">
+        <div class="about-cert-num">معتمد</div>
+        <div class="about-cert-text">دولياً في الصحة النفسية</div>
+      </div>
+    </div>
+
+    <div class="about-text reveal">
+      <span class="section-label">من نحن</span>
+      <h2>د. أيمن زكي</h2>
+      <p class="subtitle">استشاري صحة نفسية معتمد دولياً — مؤسس Cognitive Matrix Consulting</p>
+
+      <p>
+        دكتور أيمن زكي هو استشاري صحة نفسية حاصل على اعتماد دولي في مجال العلاج النفسي والإرشاد. يجمع بين الخبرة الأكاديمية العلمية الرفيعة والتطبيق العملي المتعمق لأحدث المناهج العلاجية.
+      </p>
+      <p>
+        يتمتع د. أيمن بخبرة واسعة في علاج اضطرابات القلق، الاكتئاب، صعوبات العلاقات، الصدمات النفسية، ومشكلات الهوية والتنمية الشخصية. يعمل مع الأفراد والأزواج والأسر في بيئة آمنة وخالية من الحكم.
+      </p>
+      <p>
+        مركز <strong>Cognitive Matrix Consulting</strong> يقدم رعاية نفسية متكاملة على مستوى عالمي، بأدوات علاجية متعددة مُصممة لكل حالة على حدة.
+      </p>
+
+      <div class="about-specialties">
+        <span class="specialty">اضطرابات القلق</span>
+        <span class="specialty">الاكتئاب</span>
+        <span class="specialty">صدمات PTSD</span>
+        <span class="specialty">إرشاد أسري</span>
+        <span class="specialty">علاج الزوجين</span>
+        <span class="specialty">التنمية الشخصية</span>
+        <span class="specialty">إدارة الغضب</span>
+        <span class="specialty">أزمات الهوية</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════ -->
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-label">ما نقدمه</span>
+    <h2 class="section-title">خدماتنا العلاجية</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🧠</div>
+      <div class="service-name">جلسة فردية حضورية</div>
+      <div class="service-desc">جلسة علاجية وجهاً لوجه في أحد فروعنا بمدينة نصر أو التجمع الخامس، في بيئة هادئة وآمنة تماماً.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('جلسة فردية حضورية')">احجز</button>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">💻</div>
+      <div class="service-name">جلسة أونلاين فيديو</div>
+      <div class="service-desc">جلسة بالفيديو عبر الإنترنت بنفس جودة الجلسة الحضورية — من راحة بيتك وفي وقتك المناسب.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('جلسة أونلاين فيديو')">احجز</button>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📞</div>
+      <div class="service-name">جلسة تليفونية</div>
+      <div class="service-desc">للمرضى الذين يفضلون الخصوصية التامة — جلسة كاملة عبر المكالمة الهاتفية مع نفس الكفاءة العلاجية.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('جلسة تليفونية')">احجز</button>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <div class="service-name">إرشاد أسري وزوجي</div>
+      <div class="service-desc">علاج متخصص للأزواج والأسر لتحسين التواصل وحل النزاعات وبناء علاقات أكثر صحة ووعياً.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('إرشاد أسري وزوجي')">احجز</button>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">💬</div>
+      <div class="service-name">استشارة أونلاين</div>
+      <div class="service-desc">استشارة خفيفة للتقييم المبدئي أو الإجابة عن أسئلة محددة دون الالتزام بخطة علاجية كاملة.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('استشارة أونلاين')">احجز</button>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-icon">📋</div>
+      <div class="service-name">تقييم نفسي شامل</div>
+      <div class="service-desc">تقييم دقيق ومتكامل للحالة النفسية باستخدام أدوات موحدة ومعتمدة دولياً، مع تقرير مفصل وخطة علاجية.</div>
+      <div class="service-meta">
+        <div class="service-duration">⏱ 60 دقيقة</div>
+        <button class="service-book" onclick="bookService('تقييم نفسي شامل')">احجز</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     LOCATIONS
+══════════════════════════════════════════════ -->
+<section id="locations">
+  <div class="section-header reveal">
+    <span class="section-label">أين نتواجد</span>
+    <h2 class="section-title">مواقع المركز</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="locations-grid">
+    <div class="location-card reveal">
+      <div class="location-icon">🏛</div>
+      <div class="location-name">مدينة نصر</div>
+      <div class="location-detail">القاهرة — مصر<br>متاح للحجز الحضوري</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-icon">🌇</div>
+      <div class="location-name">التجمع الخامس</div>
+      <div class="location-detail">القاهرة الجديدة — مصر<br>متاح للحجز الحضوري</div>
+    </div>
+    <div class="location-card reveal">
+      <div class="location-icon">🌐</div>
+      <div class="location-name">أونلاين</div>
+      <div class="location-detail">من أي مكان في العالم<br>فيديو · تليفون · استشارة</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     BOOKING
+══════════════════════════════════════════════ -->
+<section id="booking">
+  <div class="section-header reveal">
+    <span class="section-label">ابدأ رحلتك</span>
+    <h2 class="section-title">احجز جلستك الآن</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="booking-wrapper">
+    <div class="form-grid reveal">
+      <div class="form-group">
+        <label for="fname">الاسم الأول *</label>
+        <input type="text" id="fname" placeholder="اكتب اسمك" required>
+      </div>
+      <div class="form-group">
+        <label for="lname">الاسم الأخير *</label>
+        <input type="text" id="lname" placeholder="اكتب اسمك الأخير" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">رقم الهاتف / واتساب *</label>
+        <input type="tel" id="phone" placeholder="01XXXXXXXXX" required>
+      </div>
+      <div class="form-group">
+        <label for="email">البريد الإلكتروني</label>
+        <input type="email" id="email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label for="service">الخدمة المطلوبة *</label>
+        <select id="service" required>
+          <option value="" disabled selected>اختر نوع الجلسة</option>
+          <option>جلسة فردية حضورية</option>
+          <option>جلسة أونلاين فيديو</option>
+          <option>جلسة تليفونية</option>
+          <option>إرشاد أسري وزوجي</option>
+          <option>استشارة أونلاين</option>
+          <option>تقييم نفسي شامل</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="location">الموقع المفضل *</label>
+        <select id="location" required>
+          <option value="" disabled selected>اختر الموقع</option>
+          <option>مدينة نصر</option>
+          <option>التجمع الخامس</option>
+          <option>أونلاين</option>
+        </select>
+      </div>
+      <div class="form-group full">
+        <label for="notes">ملاحظات إضافية (اختياري)</label>
+        <textarea id="notes" placeholder="أي معلومات تود مشاركتها مسبقاً..."></textarea>
+      </div>
+    </div>
+    <button class="form-submit reveal" onclick="submitBooking()">
+      📲 إرسال الحجز عبر واتساب
+    </button>
+    <p class="whatsapp-note reveal">سيتم إرسال بياناتك مباشرة إلى <span>واتساب الدكتور</span> لتأكيد موعدك</p>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     TIPS
+══════════════════════════════════════════════ -->
+<section id="tips">
+  <div class="section-header reveal">
+    <span class="section-label">محتوى متخصص</span>
+    <h2 class="section-title">نصائح نفسية من خبراء</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="tips-grid">
+    <article class="tip-card reveal">
+      <div class="tip-cat">القلق</div>
+      <h3 class="tip-title">كيف تتعامل مع نوبات القلق الحادة؟</h3>
+      <p class="tip-body">
+        القلق هو استجابة طبيعية للخطر، لكن حين يصبح مزمناً يعطّل حياتك. الخطوة الأولى هي تقنية التنفس الحجابي: خذ نفساً عميقاً لأربع ثوان، احبسه لأربع، وأخرجه ببطء لثماني ثوان. هذا يُهدئ الجهاز العصبي مباشرة. تذكر أن الأفكار القلقة ليست حقائق — إنها مجرد أفكار يمكن تحديها.
+      </p>
+    </article>
+
+    <article class="tip-card reveal">
+      <div class="tip-cat">الاكتئاب</div>
+      <h3 class="tip-title">خطوات عملية للخروج من الاكتئاب</h3>
+      <p class="tip-body">
+        الاكتئاب لا يعني الضعف — بل هو حالة طبية قابلة للعلاج. من أهم الخطوات: الحفاظ على روتين يومي ثابت، والحركة الجسدية ولو 20 دقيقة يومياً، وتجنب العزلة التامة. العلاج المعرفي السلوكي (CBT) من أكثر الأساليب فاعلية في كسر الحلقات السلبية للأفكار الاكتئابية.
+      </p>
+    </article>
+
+    <article class="tip-card reveal">
+      <div class="tip-cat">العلاقات</div>
+      <h3 class="tip-title">أسرار التواصل الصحي في العلاقات</h3>
+      <p class="tip-body">
+        معظم مشاكل العلاقات تنشأ من سوء التواصل لا من عدم الحب. تعلّم التعبير عن احتياجاتك بوضوح بدلاً من توقع أن يقرأ شريكك أفكارك. استخدم عبارات "أنا أشعر بـ..." بدلاً من الاتهام. الاستماع الفعّال — أي الاستماع للفهم لا للرد — يُحوّل جودة أي علاقة.
+      </p>
+    </article>
+
+    <article class="tip-card reveal">
+      <div class="tip-cat">الصدمات النفسية</div>
+      <h3 class="tip-title">الشفاء من الصدمة ممكن — إليك كيف</h3>
+      <p class="tip-body">
+        الصدمة النفسية تُغير طريقة عمل الدماغ حرفياً — لكن الدماغ قادر على إعادة البناء. تقنيات مثل EMDR أثبتت فاعلية استثنائية في معالجة الصدمات. أول خطوة هي الاعتراف بأن ما حدث لك كان حقيقياً، والتوقف عن إلقاء اللوم على نفسك. الأمان والدعم المتخصص هما أساس كل تعافٍ حقيقي.
+      </p>
+    </article>
+
+    <article class="tip-card reveal">
+      <div class="tip-cat">الصحة النفسية</div>
+      <h3 class="tip-title">الحدود النفسية: كيف تحمي طاقتك؟</h3>
+      <p class="tip-body">
+        قول "لا" ليس أنانية — بل هو عمل صحة نفسية ضروري. الحدود الصحية تعني معرفة ما يمكنك تقديمه دون استنزاف نفسك. تدرّب على التعبير عن حدودك بهدوء وحزم: "لن أستطيع فعل هذا الآن" — جملة كافية لا تحتاج إلى اعتذار أو تبرير طويل.
+      </p>
+    </article>
+
+    <article class="tip-card reveal">
+      <div class="tip-cat">تقدير الذات</div>
+      <h3 class="tip-title">كيف تبني ثقة حقيقية بنفسك؟</h3>
+      <p class="tip-body">
+        الثقة بالنفس لا تأتي من غياب الخوف، بل من التصرف رغمه. ابدأ بتحديد الأفكار السلبية التلقائية عن نفسك وتحدّها: هل هذه الفكرة حقيقة أم مجرد معتقد قديم؟ احتفل بإنجازاتك الصغيرة، وعامل نفسك بنفس الطريقة التي تعامل بها أعز أصدقائك.
+      </p>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     REVIEWS
+══════════════════════════════════════════════ -->
+<section id="reviews">
+  <div class="section-header reveal">
+    <span class="section-label">آراء عملائنا</span>
+    <h2 class="section-title">تقييمات حقيقية</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="reviews-grid">
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">الدكتور أيمن غيّر حياتي حرفياً. بعد سنين من القلق والتوتر وجدت أخيراً شخصاً يفهمني ويساعدني بأسلوب علمي ومريح في نفس الوقت. أنصح كل شخص يمر بضائقة نفسية بالتواصل معه.</p>
+      <div class="review-author">
+        <div class="review-avatar">م</div>
+        <div>
+          <div class="review-name">منال</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">جلسة فردية حضورية</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">تعاملت مع الدكتور على موضوع اكتئاب كنت خايف أعترف بيه. من أول جلسة حسيت بأمان تام ومحدش هيحكم عليّ. الجلسات الأونلاين كانت مريحة جداً وبنفس الكفاءة تماماً.</p>
+      <div class="review-author">
+        <div class="review-avatar">م</div>
+        <div>
+          <div class="review-name">محمد</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">جلسة أونلاين فيديو</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">أفضل استثمار في حياتي. التقييم النفسي الشامل اللي عملته مع د. أيمن فتح عيني على جوانب في شخصيتي ومحتاجاتي ماكنتش واعياها. خطة العلاج كانت مخصصة ودقيقة جداً.</p>
+      <div class="review-author">
+        <div class="review-avatar">س</div>
+        <div>
+          <div class="review-name">سارة</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">تقييم نفسي شامل</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★☆</div>
+      <p class="review-text">راجعت الدكتور أيمن بسبب مشاكل في علاقتي الزوجية وكانت تجربة ممتازة. ساعدنا نفهم بعض أكتر ونتكلم بطريقة أحسن. كان محتاج جلسات أكثر شوية بس النتيجة كانت إيجابية.</p>
+      <div class="review-author">
+        <div class="review-avatar">أ</div>
+        <div>
+          <div class="review-name">أحمد</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">إرشاد زوجي</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">كنت خايفة من فكرة العلاج النفسي من الأساس. د. أيمن ريّحني من اللحظة الأولى بأسلوبه المتقبل وغير المتسرع. بعد 8 جلسات حسيت بفرق حقيقي في طريقة تفكيري وتعاملي مع الضغوط.</p>
+      <div class="review-author">
+        <div class="review-avatar">ن</div>
+        <div>
+          <div class="review-name">نورا</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">جلسة فردية حضورية</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="review-card reveal">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">استخدام تقنية EMDR مع الدكتور كان له أثر مذهل في معالجة صدمة من طفولتي كنت شايلها من سنين. محترف، عنده خبرة عالية، وبيخلي الجلسة آمنة ومريحة حتى وهي صعبة عاطفياً.</p>
+      <div class="review-author">
+        <div class="review-avatar">ك</div>
+        <div>
+          <div class="review-name">كريم</div>
+          <div style="color:var(--white-dim);font-size:.8rem;">علاج الصدمات EMDR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-header reveal">
+    <span class="section-label">كن على تواصل</span>
+    <h2 class="section-title">تواصل معنا</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="contact-grid">
+    <div class="contact-info reveal">
+      <h3>نحن هنا من أجلك</h3>
+
+      <div class="contact-item">
+        <div class="contact-ico">📱</div>
+        <div>
+          <div class="contact-label">واتساب / هاتف</div>
+          <div class="contact-value"><a href="tel:+201098330833">01098330833</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">📧</div>
+        <div>
+          <div class="contact-label">البريد الإلكتروني</div>
+          <div class="contact-value"><a href="mailto:aymenzaki@gmail.com">aymenzaki@gmail.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">🌐</div>
+        <div>
+          <div class="contact-label">الموقع الإلكتروني</div>
+          <div class="contact-value"><a href="https://cognitivematrixconsulting.com" target="_blank">cognitivematrixconsulting.com</a></div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <div class="contact-ico">📍</div>
+        <div>
+          <div class="contact-label">المواقع</div>
+          <div class="contact-value">مدينة نصر · التجمع الخامس · أونلاين</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-cta reveal">
+      <h3>احجز جلستك الأولى</h3>
+      <p>تواصل معنا الآن عبر واتساب وسنرد عليك في أقرب وقت لتحديد موعدك</p>
+      <a href="https://wa.me/201098330833?text=السلام%20عليكم%2C%20أريد%20حجز%20جلسة%20مع%20د.%20أيمن%20زكي" class="wa-btn" target="_blank">
+        💬 واتساب مباشر
+      </a>
+      <a href="tel:+201098330833" class="call-btn">
+        📞 اتصل بنا الآن
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">COGNITIVE MATRIX CONSULTING</div>
+  <div class="footer-sub">د. أيمن زكي — استشاري صحة نفسية معتمد دولياً</div>
+  <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem;">
+    <span class="method-tag">CBT</span>
+    <span class="method-tag">DBT</span>
+    <span class="method-tag">ACT</span>
+    <span class="method-tag">EMDR</span>
+    <span class="method-tag">NLP</span>
+    <span class="method-tag">Schema Therapy</span>
+    <span class="method-tag">Coaching</span>
+  </div>
+  <div class="footer-bottom">
+    © 2025 Cognitive Matrix Consulting. جميع الحقوق محفوظة.<br>
+    القاهرة — مصر | cognitivematrixconsulting.com
+  </div>
+</footer>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/201098330833?text=السلام%20عليكم%2C%20أريد%20حجز%20جلسة%20مع%20د.%20أيمن%20زكي" class="floating-wa" target="_blank" aria-label="تواصل عبر واتساب">
+  💬
+</a>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPTS
+══════════════════════════════════════════════ -->
+<script>
+  // ── Scroll reveal ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── Navbar scroll ──
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    if (window.scrollY > 50) {
+      nav.style.padding = '0.8rem 5%';
+    } else {
+      nav.style.padding = '1.2rem 5%';
+    }
+  });
+
+  // ── Mobile menu ──
+  document.getElementById('hamburgerBtn').onclick = () =>
+    document.getElementById('mobileMenu').classList.add('open');
+  document.getElementById('mobileClose').onclick = closeMobile;
+  function closeMobile() {
+    document.getElementById('mobileMenu').classList.remove('open');
+  }
+
+  // ── Book from service card ──
+  function bookService(name) {
+    document.getElementById('service').value = name;
+    document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+  }
+
+  // ── Show toast ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+
+  // ── Submit booking via WhatsApp ──
+  function submitBooking() {
+    const fname    = document.getElementById('fname').value.trim();
+    const lname    = document.getElementById('lname').value.trim();
+    const phone    = document.getElementById('phone').value.trim();
+    const email    = document.getElementById('email').value.trim();
+    const service  = document.getElementById('service').value;
+    const location = document.getElementById('location').value;
+    const notes    = document.getElementById('notes').value.trim();
+
+    if (!fname || !lname || !phone || !service || !location) {
+      showToast('⚠️ من فضلك أكمل جميع الحقول المطلوبة');
+      return;
+    }
+
+    const msg = `🗓 *طلب حجز جلسة — Cognitive Matrix Consulting*
+
+👤 *الاسم:* ${fname} ${lname}
+📱 *الهاتف:* ${phone}
+${email ? `📧 *الإيميل:* ${email}` : ''}
+🧠 *الخدمة:* ${service}
+📍 *الموقع المفضل:* ${location}
+${notes ? `📝 *ملاحظات:* ${notes}` : ''}
+
+_تم الإرسال عبر cognitivematrixconsulting.com_`;
+
+    const encoded = encodeURIComponent(msg);
+    const url = `https://wa.me/201098330833?text=${encoded}`;
+    window.open(url, '_blank');
+    showToast('✅ جاري الانتقال إلى واتساب لإتمام الحجز');
+  }
+
+  // ── PWA Service Worker ──
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      // Inline SW via blob for single-file deployment
+      const swCode = `
+        const CACHE = 'cmc-v1';
+        const ASSETS = ['/'];
+        self.addEventListener('install', e =>
+          e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)))
+        );
+        self.addEventListener('fetch', e =>
+          e.respondWith(
+            caches.match(e.request).then(r => r || fetch(e.request))
+          )
+        );
+      `;
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      navigator.serviceWorker.register(swUrl).catch(() => {});
+    });
+  }
+</script>
+
+<!-- Structured Data / JSON-LD for SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Cognitive Matrix Consulting",
+  "description": "مركز Cognitive Matrix Consulting — د. أيمن زكي، استشاري صحة نفسية معتمد دولياً في القاهرة. متخصص في CBT، DBT، ACT، EMDR، NLP، Schema Therapy.",
+  "url": "https://cognitivematrixconsulting.com",
+  "telephone": "+201098330833",
+  "email": "aymenzaki@gmail.com",
+  "address": [
+    {
+      "@type": "PostalAddress",
+      "addressLocality": "مدينة نصر",
+      "addressRegion": "القاهرة",
+      "addressCountry": "EG"
+    },
+    {
+      "@type": "PostalAddress",
+      "addressLocality": "التجمع الخامس",
+      "addressRegion": "القاهرة الجديدة",
+      "addressCountry": "EG"
+    }
+  ],
+  "medicalSpecialty": "Psychiatry",
+  "availableService": [
+    { "@type": "MedicalTherapy", "name": "جلسة فردية حضورية" },
+    { "@type": "MedicalTherapy", "name": "جلسة أونلاين فيديو" },
+    { "@type": "MedicalTherapy", "name": "جلسة تليفونية" },
+    { "@type": "MedicalTherapy", "name": "إرشاد أسري وزوجي" },
+    { "@type": "MedicalTherapy", "name": "استشارة أونلاين" },
+    { "@type": "MedicalTherapy", "name": "تقييم نفسي شامل" }
+  ],
+  "founder": {
+    "@type": "Person",
+    "name": "د. أيمن زكي",
+    "jobTitle": "استشاري صحة نفسية معتمد دولياً"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "6"
+  }
+}
+</script>
+</body>
+</html>
