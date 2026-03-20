@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#060810">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="#" id="manifest-link">
+<title>Cognitive Matrix | كوجنتيف ماتركس</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#060810; --s1:#0c1120; --s2:#111827; --s3:#1a2540;
+  --border:rgba(90,150,255,0.11); --border2:rgba(90,150,255,0.06);
+  --a:#5a96ff; --a2:#67e8d4; --a3:#b8a0ff; --gold:#d4a843;
+  --danger:#f05555; --ok:#34d399; --warn:#fb923c;
+  --t:#dce8fc; --tm:#6a80a0; --td:#354560;
+  --r:14px; --rs:9px; --shadow:0 8px 32px rgba(0,0,0,0.5);
+  --glow:0 0 40px rgba(90,150,255,0.12);
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:'IBM Plex Sans Arabic','DM Sans',sans-serif;background:var(--bg);color:var(--t);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 55% 45% at 15% 15%,rgba(90,150,255,0.07) 0%,transparent 65%),radial-gradient(ellipse 45% 55% at 85% 85%,rgba(103,232,212,0.05) 0%,transparent 60%);pointer-events:none;z-index:0}
+
+/* Lang toggle */
+[data-en]{display:none}
+body.en [data-ar]{display:none!important}
+body.en [data-en]{display:initial}
+body.en .card-body [data-en]{display:block}
+body.en .card-body [data-ar]{display:none}
+body.en{direction:ltr;font-family:'DM Sans','IBM Plex Sans Arabic',sans-serif}
+body.en #html-root{direction:ltr}
+
+/* === SPLASH === */
+#splash{position:fixed;inset:0;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;transition:opacity .8s ease,transform .8s ease}
+#splash.gone{opacity:0;transform:scale(1.06);pointer-events:none}
+.sp-ring{width:100px;height:100px;border-radius:28px;background:linear-gradient(135deg,rgba(90,150,255,0.18),rgba(103,232,212,0.12));border:1px solid rgba(90,150,255,0.28);display:flex;align-items:center;justify-content:center;font-size:44px;margin-bottom:26px;box-shadow:0 0 70px rgba(90,150,255,0.2),inset 0 0 30px rgba(90,150,255,0.05);animation:spPulse 2s ease-in-out infinite}
+@keyframes spPulse{0%,100%{box-shadow:0 0 70px rgba(90,150,255,0.2),inset 0 0 30px rgba(90,150,255,0.05)}50%{box-shadow:0 0 100px rgba(90,150,255,0.35),inset 0 0 45px rgba(90,150,255,0.1)}}
+.sp-title{font-family:'DM Serif Display',serif;font-size:30px;letter-spacing:3px;margin-bottom:4px}
+.sp-sub{font-size:12px;color:var(--tm);letter-spacing:2px;margin-bottom:52px}
+.sp-bar{width:130px;height:2px;background:var(--s2);border-radius:2px;overflow:hidden}
+.sp-fill{height:100%;background:linear-gradient(90deg,var(--a),var(--a2));animation:spLoad 2s ease forwards}
+@keyframes spLoad{0%{width:0}100%{width:100%}}
+
+/* === LAYOUT === */
+#app{position:relative;z-index:1;min-height:100vh;padding-bottom:84px}
+.page{display:none;animation:pIn .3s ease}
+.page.active{display:block}
+@keyframes pIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+/* === HEADER === */
+.header{position:sticky;top:0;z-index:100;padding:14px 20px;background:rgba(6,8,16,.92);backdrop-filter:blur(22px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.hl{display:flex;align-items:center;gap:10px}
+.h-icon{width:38px;height:38px;background:linear-gradient(135deg,rgba(90,150,255,0.2),rgba(103,232,212,0.14));border:1px solid rgba(90,150,255,0.24);border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.h-name{font-size:13px;font-weight:700;line-height:1.2}
+.h-sub{font-size:10px;color:var(--tm);letter-spacing:1.5px}
+.hr{display:flex;gap:8px;align-items:center}
+.h-btn{width:36px;height:36px;background:var(--s1);border:1px solid var(--border);border-radius:10px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:15px;transition:all .2s;position:relative}
+.h-btn:hover{border-color:var(--a);background:rgba(90,150,255,.1)}
+.h-dot{position:absolute;top:7px;right:7px;width:7px;height:7px;background:var(--a);border-radius:50%;border:1.5px solid var(--bg)}
+
+/* Lang switcher */
+.lang-sw{display:flex;background:var(--s1);border:1px solid var(--border);border-radius:10px;overflow:hidden;font-size:12px}
+.lang-opt{padding:5px 10px;cursor:pointer;transition:all .2s;color:var(--tm);font-weight:500}
+.lang-opt.on{background:var(--a);color:#fff}
+
+/* === SECTIONS === */
+.sec-hdr{display:flex;align-items:center;justify-content:space-between;padding:0 20px;margin-bottom:12px}
+.sec-title{font-size:15px;font-weight:700}
+.sec-more{font-size:12px;color:var(--a);cursor:pointer}
+
+/* === HOME === */
+.hero{padding:26px 20px 18px}
+.hero-greet{font-size:13px;color:var(--tm);margin-bottom:4px}
+.hero-name{font-size:26px;font-weight:700;margin-bottom:5px}
+.hero-name em{color:var(--a);font-style:normal}
+.hero-tag{font-size:13px;color:var(--tm);line-height:1.6}
+
+/* Mood */
+.mood-card{margin:0 20px 22px;background:linear-gradient(135deg,rgba(90,150,255,0.1),rgba(103,232,212,0.06));border:1px solid rgba(90,150,255,0.18);border-radius:var(--r);padding:18px;position:relative;overflow:hidden}
+.mood-card::after{content:'';position:absolute;top:-40px;right:-40px;width:130px;height:130px;background:radial-gradient(circle,rgba(90,150,255,0.14),transparent 70%);border-radius:50%;pointer-events:none}
+.mood-lbl{font-size:11px;color:var(--tm);margin-bottom:10px;letter-spacing:.5px}
+.mood-q{font-size:14px;font-weight:600;margin-bottom:14px}
+.mood-emojis{display:flex;gap:8px;margin-bottom:16px}
+.me{flex:1;height:44px;background:var(--s2);border:1.5px solid var(--border);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;transition:all .2s}
+.me:hover,.me.on{border-color:var(--a);background:rgba(90,150,255,.15);transform:translateY(-2px)}
+.mood-btn{width:100%;background:linear-gradient(135deg,var(--a),#3a7aee);border:none;border-radius:10px;padding:11px;color:#fff;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+.mood-btn:hover{opacity:.9;transform:translateY(-1px)}
+
+/* Next session */
+.sess-card{margin:0 20px 22px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px;cursor:pointer;transition:all .25s;position:relative;overflow:hidden}
+.sess-card::after{content:'';position:absolute;right:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--a),var(--a2));border-radius:0 var(--r) var(--r) 0}
+.sess-card:hover{border-color:rgba(90,150,255,.3);box-shadow:var(--glow)}
+.sess-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(90,150,255,.1);border:1px solid rgba(90,150,255,.18);border-radius:20px;padding:4px 10px;font-size:11px;color:var(--a);margin-bottom:12px}
+.sess-badge::before{content:'●';font-size:7px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.sess-therapist{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.t-av{width:48px;height:48px;background:linear-gradient(135deg,var(--a),var(--a2));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.t-name{font-size:15px;font-weight:700}
+.t-title{font-size:11px;color:var(--tm)}
+.sess-meta{display:flex;flex-wrap:wrap;gap:12px}
+.sm{display:flex;align-items:center;gap:5px;font-size:12px;color:var(--tm)}
+
+/* Quick actions */
+.qa-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:0 20px;margin-bottom:22px}
+.qa{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:14px 6px;display:flex;flex-direction:column;align-items:center;gap:7px;cursor:pointer;transition:all .2s}
+.qa:hover{border-color:rgba(90,150,255,.3);transform:translateY(-2px)}
+.qa-i{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.qa-l{font-size:10px;color:var(--tm);text-align:center;line-height:1.3}
+
+/* Articles */
+.art-scroll{display:flex;gap:12px;padding:0 20px;overflow-x:auto;scrollbar-width:none;margin-bottom:22px}
+.art-scroll::-webkit-scrollbar{display:none}
+.art-card{flex-shrink:0;width:195px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .25s}
+.art-card:hover{border-color:rgba(90,150,255,.3);transform:translateY(-3px)}
+.art-img{height:96px;display:flex;align-items:center;justify-content:center;font-size:42px}
+.art-body{padding:12px}
+.art-tag{font-size:10px;color:var(--a);margin-bottom:5px}
+.art-title{font-size:12px;font-weight:500;line-height:1.5}
+
+/* === BOOKING === */
+.bk{padding:20px}
+.ph{margin-bottom:22px}
+.ph h2{font-size:22px;font-weight:700;margin-bottom:3px}
+.ph p{font-size:13px;color:var(--tm)}
+
+.t-list{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.t-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:15px;display:flex;gap:13px;cursor:pointer;transition:all .25s;position:relative}
+.t-card:hover,.t-card.on{border-color:rgba(90,150,255,.4);box-shadow:var(--glow)}
+.t-card.on::before{content:'✓';position:absolute;top:12px;left:12px;width:22px;height:22px;background:var(--a);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;display:grid;place-items:center}
+.tc-av{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.tc-n{font-size:14px;font-weight:700;margin-bottom:2px}
+.tc-s{font-size:11px;color:var(--tm);margin-bottom:8px}
+.tc-tags{display:flex;flex-wrap:wrap;gap:4px}
+.tc-tag{padding:3px 8px;background:rgba(90,150,255,.1);border:1px solid rgba(90,150,255,.14);border-radius:20px;font-size:10px;color:var(--a2)}
+.tc-r{display:flex;align-items:center;gap:3px;font-size:12px;color:var(--gold)}
+
+/* Calendar */
+.cal-wrap{margin-bottom:22px}
+.cal-wrap h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-bottom:14px}
+.cd-lbl{text-align:center;font-size:10px;color:var(--td);padding-bottom:2px}
+.cd{aspect-ratio:1;background:var(--s1);border:1px solid var(--border);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:12px;cursor:pointer;transition:all .2s;position:relative}
+.cd:hover{border-color:rgba(90,150,255,.4)}
+.cd.today{border-color:var(--a);color:var(--a);font-weight:700}
+.cd.sel{background:var(--a);border-color:var(--a);color:#fff;font-weight:700}
+.cd.dis{opacity:.3;cursor:not-allowed}
+.cd.avail::after{content:'';position:absolute;bottom:3px;width:4px;height:4px;background:var(--a2);border-radius:50%}
+
+.ts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px}
+.ts{background:var(--s1);border:1px solid var(--border);border-radius:9px;padding:11px 6px;text-align:center;font-size:12px;cursor:pointer;transition:all .2s}
+.ts:hover{border-color:rgba(90,150,255,.4)}
+.ts.sel{background:rgba(90,150,255,.15);border-color:var(--a);color:var(--a);font-weight:600}
+.ts.na{opacity:.3;cursor:not-allowed}
+
+.st-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+.st{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:14px;cursor:pointer;transition:all .2s}
+.st:hover,.st.on{border-color:rgba(90,150,255,.4)}
+.st.on{background:rgba(90,150,255,.08)}
+.st-icon{font-size:24px;margin-bottom:7px}
+.st-n{font-size:13px;font-weight:600;margin-bottom:2px}
+.st-d{font-size:11px;color:var(--tm)}
+
+/* === PAYMENT === */
+.pay-wrap{padding:20px}
+.pay-summary{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.ps-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border2);font-size:13px}
+.ps-row:last-child{border-bottom:none;font-weight:700;font-size:15px;color:var(--a)}
+.pay-methods{margin-bottom:20px}
+.pay-methods h3{font-size:14px;font-weight:700;margin-bottom:12px}
+.pm-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.pm{background:var(--s1);border:1.5px solid var(--border);border-radius:var(--rs);padding:14px;display:flex;flex-direction:column;align-items:center;gap:8px;cursor:pointer;transition:all .2s}
+.pm:hover,.pm.on{border-color:var(--a);background:rgba(90,150,255,.08)}
+.pm-icon{font-size:26px}
+.pm-name{font-size:12px;font-weight:500}
+.pm-sub{font-size:10px;color:var(--tm)}
+.card-form{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px;margin-bottom:20px}
+.card-form h3{font-size:14px;font-weight:700;margin-bottom:14px}
+.fg{margin-bottom:14px}
+.fg label{font-size:11px;color:var(--tm);margin-bottom:5px;display:block}
+.fg input{width:100%;background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:11px 14px;color:var(--t);font-family:inherit;font-size:13px;outline:none;transition:border-color .2s}
+.fg input:focus{border-color:rgba(90,150,255,.4)}
+.fg input::placeholder{color:var(--td)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.secure-badge{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--tm);margin-bottom:16px}
+
+/* Buttons */
+.btn-main{width:100%;background:linear-gradient(135deg,var(--a),#3a7aee);border:none;border-radius:var(--rs);padding:15px;color:#fff;font-family:inherit;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-main:hover{opacity:.9;transform:translateY(-1px);box-shadow:0 8px 24px rgba(90,150,255,.3)}
+
+/* === SESSIONS === */
+.sess-wrap{padding:20px}
+.s-tabs{display:flex;gap:5px;background:var(--s1);border-radius:10px;padding:4px;margin-bottom:18px}
+.s-tab{flex:1;padding:8px;text-align:center;font-size:12px;cursor:pointer;border-radius:8px;transition:all .2s;color:var(--tm)}
+.s-tab.on{background:var(--a);color:#fff;font-weight:600}
+.si{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:10px;cursor:pointer;transition:all .25s}
+.si:hover{border-color:rgba(90,150,255,.3)}
+.si-hdr{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:11px}
+.si-date{font-size:13px;font-weight:700}
+.bdg{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:500}
+.bdg.up{background:rgba(90,150,255,.12);color:var(--a);border:1px solid rgba(90,150,255,.16)}
+.bdg.done{background:rgba(52,211,153,.1);color:var(--ok);border:1px solid rgba(52,211,153,.15)}
+.bdg.can{background:rgba(240,85,85,.1);color:var(--danger);border:1px solid rgba(240,85,85,.14)}
+.si-th{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.si-av{width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.si-tn{font-size:13px;font-weight:600}
+.si-ft{display:flex;gap:7px}
+.si-act{flex:1;padding:8px;border-radius:8px;text-align:center;font-size:11px;cursor:pointer;border:1px solid var(--border);background:transparent;color:var(--t);font-family:inherit;transition:all .2s}
+.si-act.p{background:rgba(90,150,255,.14);border-color:rgba(90,150,255,.28);color:var(--a)}
+.si-act:hover{border-color:var(--a)}
+
+/* Mood chart */
+.mood-chart{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px;margin-bottom:18px}
+.mc-hdr{margin-bottom:14px}
+.mc-t{font-size:13px;font-weight:700;margin-bottom:2px}
+.mc-s{font-size:11px;color:var(--tm)}
+.mc-bars{display:flex;align-items:flex-end;gap:5px;height:70px}
+.mc-bw{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end}
+.mc-b{width:100%;border-radius:4px 4px 0 0;background:linear-gradient(180deg,var(--a),rgba(90,150,255,.35))}
+.mc-d{font-size:9px;color:var(--td)}
+
+/* === CHAT === */
+.chat-wrap{display:flex;flex-direction:column;height:calc(100vh - 158px)}
+.chat-hdr{padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
+.ch-av{width:42px;height:42px;background:linear-gradient(135deg,var(--a3),#7c3aed);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+.ch-name{font-size:14px;font-weight:700}
+.ch-status{font-size:11px;color:var(--ok)}
+.chat-msgs{flex:1;overflow-y:auto;padding:18px 20px;display:flex;flex-direction:column;gap:13px;scrollbar-width:thin;scrollbar-color:var(--s2) transparent}
+.msg{max-width:82%}
+.msg.out{align-self:flex-start}
+.msg.in{align-self:flex-end}
+.msg-b{padding:11px 14px;border-radius:14px;font-size:13px;line-height:1.6}
+.msg.out .msg-b{background:var(--s2);border:1px solid var(--border);border-radius:14px 14px 4px 14px}
+.msg.in .msg-b{background:linear-gradient(135deg,rgba(90,150,255,.18),rgba(90,150,255,.1));border:1px solid rgba(90,150,255,.18);border-radius:14px 14px 14px 4px}
+.msg-t{font-size:10px;color:var(--td);margin-top:3px}
+.msg.in .msg-t{text-align:left}
+.chat-in-area{padding:12px 20px;border-top:1px solid var(--border);display:flex;gap:9px;align-items:flex-end}
+.chat-in{flex:1;background:var(--s1);border:1px solid var(--border);border-radius:13px;padding:11px 14px;color:var(--t);font-family:inherit;font-size:13px;resize:none;max-height:100px;min-height:44px;outline:none;transition:border-color .2s;direction:rtl}
+body.en .chat-in{direction:ltr}
+.chat-in:focus{border-color:rgba(90,150,255,.4)}
+.chat-send{width:44px;height:44px;background:var(--a);border:none;border-radius:12px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:17px;color:#fff;transition:all .2s;flex-shrink:0}
+.chat-send:hover{opacity:.85;transform:scale(.96)}
+
+/* === PROFILE === */
+.prof-wrap{padding:20px}
+.prof-hero{text-align:center;margin-bottom:24px;padding:26px 18px;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);position:relative;overflow:hidden}
+.prof-hero::before{content:'';position:absolute;top:0;inset-inline:0;height:72px;background:linear-gradient(135deg,rgba(90,150,255,.12),rgba(103,232,212,.08))}
+.p-av{width:74px;height:74px;margin:0 auto 12px;background:linear-gradient(135deg,var(--a),var(--a2));border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:32px;border:3px solid var(--bg);position:relative;z-index:1}
+.p-name{font-size:18px;font-weight:700;margin-bottom:3px}
+.p-since{font-size:12px;color:var(--tm)}
+.p-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:18px}
+.p-stat{text-align:center;padding:11px 6px}
+.p-stat+.p-stat{border-right:1px solid var(--border2)}
+.p-val{font-size:20px;font-weight:800;color:var(--a)}
+.p-lbl{font-size:10px;color:var(--tm);margin-top:2px}
+.set-list{display:flex;flex-direction:column;gap:7px}
+.set-item{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:13px 15px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .2s}
+.set-item:hover{border-color:rgba(90,150,255,.28)}
+.set-icon{width:35px;height:35px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.set-t{font-size:13px;font-weight:600}
+.set-s{font-size:11px;color:var(--tm);margin-top:1px}
+.set-arr{margin-right:auto;color:var(--td);font-size:15px}
+body.en .set-arr{margin-right:0;margin-left:auto}
+
+/* === BOTTOM NAV === */
+.bnav{position:fixed;bottom:0;left:0;right:0;z-index:100;background:rgba(6,8,16,.95);backdrop-filter:blur(20px);border-top:1px solid var(--border);display:flex;padding:8px 0 max(8px,env(safe-area-inset-bottom))}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer;padding:5px 3px;transition:all .2s;position:relative}
+.ni-icon{font-size:21px;transition:transform .2s}
+.ni-lbl{font-size:10px;color:var(--td);transition:color .2s}
+.ni.on .ni-lbl{color:var(--a)}
+.ni.on .ni-icon{transform:scale(1.1)}
+.ni-bar{position:absolute;top:0;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--a);border-radius:0 0 2px 2px;opacity:0;transition:opacity .2s}
+.ni.on .ni-bar{opacity:1}
+
+/* === MODALS === */
+.ov{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.72);backdrop-filter:blur(7px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity .3s}
+.ov.open{opacity:1;pointer-events:all}
+.modal{width:100%;background:var(--s1);border:1px solid var(--border);border-radius:22px 22px 0 0;padding:20px;transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);max-height:82vh;overflow-y:auto}
+.ov.open .modal{transform:translateY(0)}
+.m-handle{width:34px;height:4px;background:var(--border);border-radius:2px;margin:0 auto 18px}
+.m-title{font-size:17px;font-weight:700;margin-bottom:16px;text-align:center}
+
+/* Toast */
+.toast{position:fixed;top:78px;right:50%;transform:translateX(50%);background:var(--s2);border:1px solid var(--border);border-radius:20px;padding:9px 20px;font-size:12px;z-index:500;opacity:0;pointer-events:none;transition:all .3s;white-space:nowrap;box-shadow:var(--shadow)}
+.toast.on{opacity:1}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--s2);border-radius:2px}
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-ring">🧠</div>
+  <div class="sp-title">Cognitive Matrix</div>
+  <div class="sp-sub">كوجنتيف ماتركس · للاستشارات النفسية</div>
+  <div class="sp-bar"><div class="sp-fill"></div></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- Booking Confirm Modal -->
+<div class="ov" id="m-confirm" onclick="closeOv('m-confirm')">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="m-handle"></div>
+    <div class="m-title"><span data-ar>تأكيد الحجز</span><span data-en>Booking Confirmed</span> ✅</div>
+    <div style="text-align:center;padding:10px 0 20px">
+      <div style="font-size:58px;margin-bottom:14px">🎉</div>
+      <p style="font-size:15px;font-weight:700;margin-bottom:7px"><span data-ar>تم تأكيد موعدك!</span><span data-en>Your appointment is confirmed!</span></p>
+      <p style="font-size:13px;color:var(--tm);margin-bottom:18px;line-height:1.7">
+        <span data-ar>الثلاثاء، ٢٥ مارس · ٤:٠٠ م<br>د. سارة الأحمد · أونلاين</span>
+        <span data-en>Tuesday, March 25 · 4:00 PM<br>Dr. Sarah Al-Ahmed · Online</span>
+      </p>
+      <div style="background:var(--s2);border-radius:11px;padding:13px;margin-bottom:18px;text-align:right">
+        <p style="font-size:12px;color:var(--tm);margin-bottom:4px">📧 <span data-ar>تم إرسال التأكيد على بريدك الإلكتروني</span><span data-en>Confirmation sent to your email</span></p>
+        <p style="font-size:12px;color:var(--tm)">🔔 <span data-ar>ستصلك تذكيرة قبل الجلسة بـ ٢٤ ساعة</span><span data-en>Reminder 24 hours before session</span></p>
+      </div>
+      <button class="btn-main" onclick="closeOv('m-confirm')"><span data-ar>ممتاز!</span><span data-en>Great!</span></button>
+    </div>
+  </div>
+</div>
+
+<div id="app">
+<!-- HEADER -->
+<header class="header">
+  <div class="hl">
+    <div class="h-icon">🧠</div>
+    <div>
+      <div class="h-name">Cognitive Matrix</div>
+      <div class="h-sub">كوجنتيف ماتركس</div>
+    </div>
+  </div>
+  <div class="hr">
+    <div class="lang-sw">
+      <div class="lang-opt on" id="btn-ar" onclick="setLang('ar')">ع</div>
+      <div class="lang-opt" id="btn-en" onclick="setLang('en')">EN</div>
+    </div>
+    <div class="h-btn" onclick="toast('🔔 <span data-ar>لا توجد إشعارات</span>')">🔔<span class="h-dot"></span></div>
+    <div class="h-btn" onclick="nav('profile')">👤</div>
+  </div>
+</header>
+
+<!-- ========== HOME ========== -->
+<div class="page active" id="p-home">
+  <div class="hero">
+    <p class="hero-greet"><span data-ar>مرحباً بك ☀️</span><span data-en>Welcome back ☀️</span></p>
+    <h1 class="hero-name"><span data-ar>أحمد <em>الرفاعي</em></span><span data-en>Ahmed <em>Al-Rifai</em></span></h1>
+    <p class="hero-tag"><span data-ar>كيف تشعر اليوم؟ نحن هنا لدعمك.</span><span data-en>How are you feeling today? We're here for you.</span></p>
+  </div>
+
+  <div class="mood-card">
+    <p class="mood-lbl">✨ <span data-ar>تسجيل المزاج اليومي</span><span data-en>Daily mood check-in</span></p>
+    <p class="mood-q"><span data-ar>كيف حالك الآن؟</span><span data-en>How are you right now?</span></p>
+    <div class="mood-emojis">
+      <div class="me" onclick="pickMood(this)">😔</div>
+      <div class="me" onclick="pickMood(this)">😕</div>
+      <div class="me" onclick="pickMood(this)">😐</div>
+      <div class="me" onclick="pickMood(this)">🙂</div>
+      <div class="me" onclick="pickMood(this)">😊</div>
+    </div>
+    <button class="mood-btn" onclick="showToast('✅ <span data-ar>تم تسجيل مزاجك</span><span data-en>Mood recorded</span>')">
+      <span data-ar>سجّل مزاجي</span><span data-en>Log my mood</span>
+    </button>
+  </div>
+
+  <div class="sec-hdr">
+    <span class="sec-title"><span data-ar>الجلسة القادمة</span><span data-en>Upcoming Session</span></span>
+    <span class="sec-more" onclick="nav('sessions')"><span data-ar>عرض الكل</span><span data-en>View all</span></span>
+  </div>
+  <div class="sess-card" onclick="nav('sessions')">
+    <div class="sess-badge"><span data-ar>مؤكدة</span><span data-en>Confirmed</span></div>
+    <div class="sess-therapist">
+      <div class="t-av">👩‍⚕️</div>
+      <div>
+        <div class="t-name"><span data-ar>د. سارة الأحمد</span><span data-en>Dr. Sarah Al-Ahmed</span></div>
+        <div class="t-title"><span data-ar>أخصائية نفسية معرفية سلوكية</span><span data-en>Cognitive Behavioral Therapist</span></div>
+      </div>
+    </div>
+    <div class="sess-meta">
+      <div class="sm">📅 <span data-ar>الثلاثاء، ٢٥ مارس</span><span data-en>Tue, Mar 25</span></div>
+      <div class="sm">🕓 <span data-ar>٤:٠٠ م</span><span data-en>4:00 PM</span></div>
+      <div class="sm">💻 <span data-ar>أونلاين</span><span data-en>Online</span></div>
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <span class="sec-title"><span data-ar>خدمات سريعة</span><span data-en>Quick Access</span></span>
+  </div>
+  <div class="qa-grid">
+    <div class="qa" onclick="nav('booking')">
+      <div class="qa-i" style="background:rgba(90,150,255,.14)">📅</div>
+      <span class="qa-l"><span data-ar>احجز جلسة</span><span data-en>Book</span></span>
+    </div>
+    <div class="qa" onclick="nav('payment')">
+      <div class="qa-i" style="background:rgba(212,168,67,.14)">💳</div>
+      <span class="qa-l"><span data-ar>الدفع</span><span data-en>Payment</span></span>
+    </div>
+    <div class="qa" onclick="nav('sessions')">
+      <div class="qa-i" style="background:rgba(103,232,212,.12)">📊</div>
+      <span class="qa-l"><span data-ar>جلساتي</span><span data-en>Sessions</span></span>
+    </div>
+    <div class="qa" onclick="nav('chat')">
+      <div class="qa-i" style="background:rgba(184,160,255,.12)">💬</div>
+      <span class="qa-l"><span data-ar>مساعد</span><span data-en>Chat</span></span>
+    </div>
+  </div>
+
+  <div class="sec-hdr">
+    <span class="sec-title"><span data-ar>مقالات ومصادر</span><span data-en>Resources & Articles</span></span>
+    <span class="sec-more"><span data-ar>المزيد</span><span data-en>More</span></span>
+  </div>
+  <div class="art-scroll">
+    <div class="art-card">
+      <div class="art-img" style="background:linear-gradient(135deg,rgba(90,150,255,.13),rgba(103,232,212,.08))">🧘</div>
+      <div class="art-body">
+        <div class="art-tag"><span data-ar>القلق والتوتر</span><span data-en>Anxiety & Stress</span></div>
+        <div class="art-title"><span data-ar>تقنيات التنفس لتخفيف القلق</span><span data-en>Breathing Techniques for Anxiety</span></div>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="art-img" style="background:linear-gradient(135deg,rgba(184,160,255,.13),rgba(124,58,237,.08))">😴</div>
+      <div class="art-body">
+        <div class="art-tag"><span data-ar>النوم والراحة</span><span data-en>Sleep & Rest</span></div>
+        <div class="art-title"><span data-ar>كيف تحسّن جودة نومك</span><span data-en>How to Improve Your Sleep Quality</span></div>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="art-img" style="background:linear-gradient(135deg,rgba(212,168,67,.13),rgba(180,140,40,.08))">🌱</div>
+      <div class="art-body">
+        <div class="art-tag"><span data-ar>النمو الشخصي</span><span data-en>Personal Growth</span></div>
+        <div class="art-title"><span data-ar>عادات لعقل أكثر وضوحاً</span><span data-en>Habits for a Clearer Mind</span></div>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="art-img" style="background:linear-gradient(135deg,rgba(52,211,153,.12),rgba(22,163,74,.07))">💚</div>
+      <div class="art-body">
+        <div class="art-tag"><span data-ar>العلاقات</span><span data-en>Relationships</span></div>
+        <div class="art-title"><span data-ar>التواصل الفعّال في العلاقات</span><span data-en>Effective Communication in Relationships</span></div>
+      </div>
+    </div>
+    <div class="art-card">
+      <div class="art-img" style="background:linear-gradient(135deg,rgba(240,85,85,.1),rgba(200,50,50,.07))">🧠</div>
+      <div class="art-body">
+        <div class="art-tag"><span data-ar>الصحة المعرفية</span><span data-en>Cognitive Health</span></div>
+        <div class="art-title"><span data-ar>فهم العلاج المعرفي السلوكي</span><span data-en>Understanding CBT Therapy</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== BOOKING ========== -->
+<div class="page" id="p-booking">
+  <div class="bk">
+    <div class="ph">
+      <h2><span data-ar>احجز جلستك 📅</span><span data-en>Book Your Session 📅</span></h2>
+      <p><span data-ar>اختر معالجك والموعد المناسب</span><span data-en>Choose your therapist and preferred time</span></p>
+    </div>
+
+    <div class="sec-hdr" style="padding:0;margin-bottom:10px">
+      <span class="sec-title"><span data-ar>اختر المعالج</span><span data-en>Select Therapist</span></span>
+    </div>
+    <div class="t-list">
+      <div class="t-card on" onclick="pickT(this)">
+        <div class="tc-av" style="background:linear-gradient(135deg,rgba(90,150,255,.2),rgba(103,232,212,.12))">👩‍⚕️</div>
+        <div style="flex:1">
+          <div class="tc-n"><span data-ar>د. سارة الأحمد</span><span data-en>Dr. Sarah Al-Ahmed</span></div>
+          <div class="tc-s"><span data-ar>معرفية سلوكية · ٨ سنوات</span><span data-en>CBT Specialist · 8 yrs exp.</span></div>
+          <div class="tc-tags">
+            <span class="tc-tag"><span data-ar>القلق</span><span data-en>Anxiety</span></span>
+            <span class="tc-tag"><span data-ar>الاكتئاب</span><span data-en>Depression</span></span>
+            <span class="tc-tag"><span data-ar>الصدمات</span><span data-en>Trauma</span></span>
+          </div>
+        </div>
+        <div><div class="tc-r">⭐ 4.9</div><div style="font-size:10px;color:var(--tm);margin-top:3px">230 <span data-ar>جلسة</span><span data-en>sessions</span></div></div>
+      </div>
+      <div class="t-card" onclick="pickT(this)">
+        <div class="tc-av" style="background:linear-gradient(135deg,rgba(184,160,255,.2),rgba(124,58,237,.12))">👨‍⚕️</div>
+        <div style="flex:1">
+          <div class="tc-n"><span data-ar>د. خالد منصور</span><span data-en>Dr. Khaled Mansour</span></div>
+          <div class="tc-s"><span data-ar>معالج نفسي · ١٢ سنة</span><span data-en>Psychotherapist · 12 yrs exp.</span></div>
+          <div class="tc-tags">
+            <span class="tc-tag"><span data-ar>العلاقات</span><span data-en>Relationships</span></span>
+            <span class="tc-tag"><span data-ar>الأسرة</span><span data-en>Family</span></span>
+          </div>
+        </div>
+        <div><div class="tc-r">⭐ 4.8</div><div style="font-size:10px;color:var(--tm);margin-top:3px">380 <span data-ar>جلسة</span><span data-en>sessions</span></div></div>
+      </div>
+      <div class="t-card" onclick="pickT(this)">
+        <div class="tc-av" style="background:linear-gradient(135deg,rgba(103,232,212,.18),rgba(34,197,94,.08))">👩‍⚕️</div>
+        <div style="flex:1">
+          <div class="tc-n"><span data-ar>د. ريم الزهراني</span><span data-en>Dr. Reem Al-Zahrani</span></div>
+          <div class="tc-s"><span data-ar>صحة نفسية للمراهقين · ٦ سنوات</span><span data-en>Teen Mental Health · 6 yrs exp.</span></div>
+          <div class="tc-tags">
+            <span class="tc-tag">ADHD</span>
+            <span class="tc-tag"><span data-ar>المراهقون</span><span data-en>Teens</span></span>
+          </div>
+        </div>
+        <div><div class="tc-r">⭐ 4.7</div><div style="font-size:10px;color:var(--tm);margin-top:3px">156 <span data-ar>جلسة</span><span data-en>sessions</span></div></div>
+      </div>
+    </div>
+
+    <div class="cal-wrap">
+      <h3><span data-ar>اختر التاريخ · مارس ٢٠٢٦</span><span data-en>Select Date · March 2026</span></h3>
+      <div class="cal-grid">
+        <div class="cd-lbl"><span data-ar>أح</span><span data-en>Su</span></div><div class="cd-lbl"><span data-ar>إث</span><span data-en>Mo</span></div><div class="cd-lbl"><span data-ar>ث</span><span data-en>Tu</span></div><div class="cd-lbl"><span data-ar>أر</span><span data-en>We</span></div><div class="cd-lbl"><span data-ar>خ</span><span data-en>Th</span></div><div class="cd-lbl"><span data-ar>ج</span><span data-en>Fr</span></div><div class="cd-lbl"><span data-ar>س</span><span data-en>Sa</span></div>
+        <div class="cd dis">23</div><div class="cd dis">24</div><div class="cd today">25</div><div class="cd avail" onclick="pickDay(this)">26</div><div class="cd avail" onclick="pickDay(this)">27</div><div class="cd" onclick="pickDay(this)">28</div><div class="cd" onclick="pickDay(this)">29</div>
+        <div class="cd avail" onclick="pickDay(this)">30</div><div class="cd avail" onclick="pickDay(this)">31</div><div class="cd avail sel" onclick="pickDay(this)">1</div><div class="cd avail" onclick="pickDay(this)">2</div><div class="cd avail" onclick="pickDay(this)">3</div><div class="cd" onclick="pickDay(this)">4</div><div class="cd" onclick="pickDay(this)">5</div>
+        <div class="cd avail" onclick="pickDay(this)">6</div><div class="cd" onclick="pickDay(this)">7</div><div class="cd avail" onclick="pickDay(this)">8</div><div class="cd" onclick="pickDay(this)">9</div><div class="cd avail" onclick="pickDay(this)">10</div><div class="cd" onclick="pickDay(this)">11</div><div class="cd" onclick="pickDay(this)">12</div>
+      </div>
+    </div>
+
+    <div class="sec-hdr" style="padding:0;margin-bottom:10px">
+      <span class="sec-title"><span data-ar>المواعيد المتاحة</span><span data-en>Available Times</span></span>
+    </div>
+    <div class="ts-grid">
+      <div class="ts na">9:00 <span data-ar>ص</span><span data-en>AM</span></div>
+      <div class="ts" onclick="pickTs(this)">11:00 <span data-ar>ص</span><span data-en>AM</span></div>
+      <div class="ts" onclick="pickTs(this)">12:00 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts na">2:00 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts sel" onclick="pickTs(this)">4:00 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts" onclick="pickTs(this)">5:30 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts" onclick="pickTs(this)">7:00 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts na">8:30 <span data-ar>م</span><span data-en>PM</span></div>
+      <div class="ts" onclick="pickTs(this)">9:00 <span data-ar>م</span><span data-en>PM</span></div>
+    </div>
+
+    <div class="sec-hdr" style="padding:0;margin-bottom:10px">
+      <span class="sec-title"><span data-ar>نوع الجلسة</span><span data-en>Session Type</span></span>
+    </div>
+    <div class="st-grid">
+      <div class="st on" onclick="pickSt(this)">
+        <div class="st-icon">💻</div>
+        <div class="st-n"><span data-ar>أونلاين</span><span data-en>Online</span></div>
+        <div class="st-d"><span data-ar>فيديو كول عبر المنصة</span><span data-en>Video call via platform</span></div>
+      </div>
+      <div class="st" onclick="pickSt(this)">
+        <div class="st-icon">🏢</div>
+        <div class="st-n"><span data-ar>حضوري</span><span data-en>In-Person</span></div>
+        <div class="st-d"><span data-ar>في مكتب المركز</span><span data-en>At the center office</span></div>
+      </div>
+    </div>
+
+    <button class="btn-main" onclick="nav('payment')">
+      <span data-ar>متابعة للدفع · ٢٥٠ ريال</span><span data-en>Proceed to Payment · SAR 250</span>
+    </button>
+  </div>
+</div>
+
+<!-- ========== PAYMENT ========== -->
+<div class="page" id="p-payment">
+  <div class="pay-wrap">
+    <div class="ph">
+      <h2><span data-ar>إتمام الدفع 💳</span><span data-en>Complete Payment 💳</span></h2>
+      <p><span data-ar>آمن ومشفر بالكامل</span><span data-en>Fully secure and encrypted</span></p>
+    </div>
+
+    <div class="pay-summary">
+      <div class="ps-row">
+        <span><span data-ar>جلسة فردية – د. سارة الأحمد</span><span data-en>Individual Session – Dr. Sarah</span></span>
+        <span><span data-ar>٢٥٠ ريال</span><span data-en>SAR 250</span></span>
+      </div>
+      <div class="ps-row">
+        <span><span data-ar>رسوم المنصة</span><span data-en>Platform fee</span></span>
+        <span><span data-ar>٠ ريال</span><span data-en>SAR 0</span></span>
+      </div>
+      <div class="ps-row">
+        <span><span data-ar>الإجمالي</span><span data-en>Total</span></span>
+        <span><span data-ar>٢٥٠ ريال</span><span data-en>SAR 250</span></span>
+      </div>
+    </div>
+
+    <div class="pay-methods">
+      <h3><span data-ar>طريقة الدفع</span><span data-en>Payment Method</span></h3>
+      <div class="pm-grid">
+        <div class="pm on" onclick="pickPm(this)">
+          <div class="pm-icon">💳</div>
+          <div class="pm-name"><span data-ar>بطاقة ائتمان</span><span data-en>Credit Card</span></div>
+          <div class="pm-sub">Visa / Mastercard</div>
+        </div>
+        <div class="pm" onclick="pickPm(this)">
+          <div class="pm-icon">🍎</div>
+          <div class="pm-name">Apple Pay</div>
+          <div class="pm-sub"><span data-ar>دفع سريع</span><span data-en>Fast checkout</span></div>
+        </div>
+        <div class="pm" onclick="pickPm(this)">
+          <div class="pm-icon">🟢</div>
+          <div class="pm-name">مدى</div>
+          <div class="pm-sub"><span data-ar>بطاقة مدى</span><span data-en>Mada Card</span></div>
+        </div>
+        <div class="pm" onclick="pickPm(this)">
+          <div class="pm-icon">🏦</div>
+          <div class="pm-name"><span data-ar>تحويل بنكي</span><span data-en>Bank Transfer</span></div>
+          <div class="pm-sub">IBAN</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-form" id="card-form-section">
+      <h3><span data-ar>بيانات البطاقة</span><span data-en>Card Details</span></h3>
+      <div class="fg">
+        <label><span data-ar>اسم صاحب البطاقة</span><span data-en>Cardholder Name</span></label>
+        <input type="text" placeholder="Ahmed Al-Rifai">
+      </div>
+      <div class="fg">
+        <label><span data-ar>رقم البطاقة</span><span data-en>Card Number</span></label>
+        <input type="text" placeholder="•••• •••• •••• ••••" maxlength="19">
+      </div>
+      <div class="fg-row">
+        <div class="fg">
+          <label><span data-ar>تاريخ الانتهاء</span><span data-en>Expiry Date</span></label>
+          <input type="text" placeholder="MM / YY" maxlength="7">
+        </div>
+        <div class="fg">
+          <label>CVV</label>
+          <input type="text" placeholder="•••" maxlength="4">
+        </div>
+      </div>
+    </div>
+
+    <div class="secure-badge">
+      🔒 <span data-ar>جميع المعاملات مشفرة بـ SSL 256-bit</span><span data-en>All transactions encrypted with SSL 256-bit</span>
+    </div>
+
+    <button class="btn-main" onclick="openOv('m-confirm')">
+      <span data-ar>ادفع الآن · ٢٥٠ ريال</span><span data-en>Pay Now · SAR 250</span>
+    </button>
+  </div>
+</div>
+
+<!-- ========== SESSIONS ========== -->
+<div class="page" id="p-sessions">
+  <div class="sess-wrap">
+    <div class="ph">
+      <h2><span data-ar>جلساتي 🗂️</span><span data-en>My Sessions 🗂️</span></h2>
+      <p><span data-ar>تتبع رحلتك النفسية</span><span data-en>Track your wellness journey</span></p>
+    </div>
+
+    <div class="mood-chart">
+      <div class="mc-hdr">
+        <div class="mc-t"><span data-ar>مؤشر مزاجك · آخر ٧ أيام</span><span data-en>Mood Tracker · Last 7 days</span></div>
+        <div class="mc-s"><span data-ar>متوسط: ٣.٨ / ٥ 📈</span><span data-en>Average: 3.8 / 5 📈</span></div>
+      </div>
+      <div class="mc-bars">
+        <div class="mc-bw"><div class="mc-b" style="height:45%"></div><div class="mc-d"><span data-ar>أح</span><span data-en>Su</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:60%"></div><div class="mc-d"><span data-ar>إث</span><span data-en>Mo</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:38%"></div><div class="mc-d"><span data-ar>ث</span><span data-en>Tu</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:77%"></div><div class="mc-d"><span data-ar>أر</span><span data-en>We</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:65%"></div><div class="mc-d"><span data-ar>خ</span><span data-en>Th</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:82%"></div><div class="mc-d"><span data-ar>ج</span><span data-en>Fr</span></div></div>
+        <div class="mc-bw"><div class="mc-b" style="height:70%"></div><div class="mc-d"><span data-ar>س</span><span data-en>Sa</span></div></div>
+      </div>
+    </div>
+
+    <div class="s-tabs">
+      <div class="s-tab on"><span data-ar>القادمة</span><span data-en>Upcoming</span></div>
+      <div class="s-tab" onclick="switchTab(this)"><span data-ar>المكتملة</span><span data-en>Completed</span></div>
+      <div class="s-tab" onclick="switchTab(this)"><span data-ar>الملغاة</span><span data-en>Cancelled</span></div>
+    </div>
+
+    <div class="si">
+      <div class="si-hdr">
+        <div class="si-date"><span data-ar>الثلاثاء، ٢٥ مارس · ٤:٠٠ م</span><span data-en>Tue, March 25 · 4:00 PM</span></div>
+        <span class="bdg up"><span data-ar>قادمة</span><span data-en>Upcoming</span></span>
+      </div>
+      <div class="si-th">
+        <div class="si-av" style="background:rgba(90,150,255,.14)">👩‍⚕️</div>
+        <div class="si-tn"><span data-ar>د. سارة الأحمد</span><span data-en>Dr. Sarah Al-Ahmed</span></div>
+      </div>
+      <div class="si-ft">
+        <button class="si-act p">▶ <span data-ar>انضم</span><span data-en>Join</span></button>
+        <button class="si-act" onclick="showToast('📅 <span data-ar>طلب إرسال</span><span data-en>Request sent</span>')"><span data-ar>إعادة جدولة</span><span data-en>Reschedule</span></button>
+        <button class="si-act" onclick="showToast('❌ <span data-ar>تم الإلغاء</span><span data-en>Cancelled</span>')"><span data-ar>إلغاء</span><span data-en>Cancel</span></button>
+      </div>
+    </div>
+    <div class="si">
+      <div class="si-hdr">
+        <div class="si-date"><span data-ar>الأحد، ٥ أبريل · ١١:٠٠ ص</span><span data-en>Sun, April 5 · 11:00 AM</span></div>
+        <span class="bdg up"><span data-ar>قادمة</span><span data-en>Upcoming</span></span>
+      </div>
+      <div class="si-th">
+        <div class="si-av" style="background:rgba(184,160,255,.14)">👨‍⚕️</div>
+        <div class="si-tn"><span data-ar>د. خالد منصور</span><span data-en>Dr. Khaled Mansour</span></div>
+      </div>
+      <div class="si-ft">
+        <button class="si-act p">▶ <span data-ar>انضم</span><span data-en>Join</span></button>
+        <button class="si-act" onclick="showToast('📅 <span data-ar>طلب إرسال</span><span data-en>Request sent</span>')"><span data-ar>إعادة جدولة</span><span data-en>Reschedule</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== CHAT ========== -->
+<div class="page" id="p-chat">
+  <div class="chat-wrap">
+    <div class="chat-hdr">
+      <div class="ch-av">🤖</div>
+      <div>
+        <div class="ch-name"><span data-ar>مساعد كوجنتيف</span><span data-en>Cognitive Assistant</span></div>
+        <div class="ch-status">● <span data-ar>متاح الآن</span><span data-en>Online now</span></div>
+      </div>
+    </div>
+    <div class="chat-msgs" id="chat-msgs">
+      <div class="msg out">
+        <div class="msg-b"><span data-ar>مرحباً! أنا المساعد الذكي لمركز كوجنتيف ماتركس. كيف يمكنني مساعدتك؟ 😊</span><span data-en>Hello! I'm the AI assistant for Cognitive Matrix Center. How can I help you today? 😊</span></div>
+        <div class="msg-t">3:20 PM</div>
+      </div>
+      <div class="msg in">
+        <div class="msg-b"><span data-ar>أريد معرفة المزيد عن الخدمات</span><span data-en>I'd like to know more about your services</span></div>
+        <div class="msg-t">3:21 PM</div>
+      </div>
+      <div class="msg out">
+        <div class="msg-b"><span data-ar>نقدم: جلسات فردية، علاج معرفي سلوكي CBT، إرشاد أسري، ودعم للمراهقين. يمكنك الحجز مباشرة من التطبيق. هل لديك سؤال محدد؟ 🧠</span><span data-en>We offer: Individual sessions, CBT therapy, family counseling, and teen support. You can book directly through the app. Any specific questions? 🧠</span></div>
+        <div class="msg-t">3:21 PM</div>
+      </div>
+    </div>
+    <div class="chat-in-area">
+      <textarea class="chat-in" id="c-in" rows="1" onkeydown="sendK(event)"><br></textarea>
+      <button class="chat-send" onclick="sendChat()">➤</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PROFILE ========== -->
+<div class="page" id="p-profile">
+  <div class="prof-wrap">
+    <div class="prof-hero">
+      <div class="p-av">👤</div>
+      <div class="p-name"><span data-ar>أحمد الرفاعي</span><span data-en>Ahmed Al-Rifai</span></div>
+      <div class="p-since"><span data-ar>عميل منذ يناير ٢٠٢٥</span><span data-en>Member since January 2025</span></div>
+      <div class="p-stats">
+        <div class="p-stat"><div class="p-val">12</div><div class="p-lbl"><span data-ar>جلسة مكتملة</span><span data-en>Sessions Done</span></div></div>
+        <div class="p-stat"><div class="p-val">3.8</div><div class="p-lbl"><span data-ar>متوسط المزاج</span><span data-en>Avg. Mood</span></div></div>
+        <div class="p-stat"><div class="p-val">2</div><div class="p-lbl"><span data-ar>جلسات قادمة</span><span data-en>Upcoming</span></div></div>
+      </div>
+    </div>
+    <div class="set-list">
+      <div class="set-item" onclick="showToast('📝')">
+        <div class="set-icon" style="background:rgba(90,150,255,.12)">📝</div>
+        <div><div class="set-t"><span data-ar>تعديل الملف الشخصي</span><span data-en>Edit Profile</span></div><div class="set-s"><span data-ar>الاسم، الصورة، بيانات الاتصال</span><span data-en>Name, photo, contact info</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('💳')">
+        <div class="set-icon" style="background:rgba(212,168,67,.12)">💳</div>
+        <div><div class="set-t"><span data-ar>طرق الدفع والفواتير</span><span data-en>Payment & Invoices</span></div><div class="set-s"><span data-ar>بطاقات، مدى، Apple Pay</span><span data-en>Cards, Mada, Apple Pay</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('🔒')">
+        <div class="set-icon" style="background:rgba(103,232,212,.12)">🔒</div>
+        <div><div class="set-t"><span data-ar>الأمان والخصوصية</span><span data-en>Security & Privacy</span></div><div class="set-s"><span data-ar>كلمة المرور، المصادقة الثنائية</span><span data-en>Password, 2FA</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('🔔')">
+        <div class="set-icon" style="background:rgba(184,160,255,.12)">🔔</div>
+        <div><div class="set-t"><span data-ar>الإشعارات والتذكيرات</span><span data-en>Notifications</span></div><div class="set-s"><span data-ar>تذكيرات، رسائل البريد</span><span data-en>Reminders, email alerts</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('🌐')">
+        <div class="set-icon" style="background:rgba(90,150,255,.12)">🌐</div>
+        <div><div class="set-t"><span data-ar>اللغة / Language</span><span data-en>Language / اللغة</span></div><div class="set-s"><span data-ar>عربي · English</span><span data-en>Arabic · English</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('📞')">
+        <div class="set-icon" style="background:rgba(52,211,153,.1)">📞</div>
+        <div><div class="set-t"><span data-ar>تواصل معنا</span><span data-en>Contact Us</span></div><div class="set-s"><span data-ar>الدعم والمساعدة</span><span data-en>Support & help</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+      <div class="set-item" onclick="showToast('👋')">
+        <div class="set-icon" style="background:rgba(240,85,85,.1)">🚪</div>
+        <div><div class="set-t" style="color:var(--danger)"><span data-ar>تسجيل الخروج</span><span data-en>Sign Out</span></div></div>
+        <span class="set-arr">‹</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <div class="ni on" onclick="nav('home')">
+    <div class="ni-bar"></div><div class="ni-icon">🏠</div>
+    <div class="ni-lbl"><span data-ar>الرئيسية</span><span data-en>Home</span></div>
+  </div>
+  <div class="ni" onclick="nav('booking')">
+    <div class="ni-bar"></div><div class="ni-icon">📅</div>
+    <div class="ni-lbl"><span data-ar>حجز</span><span data-en>Book</span></div>
+  </div>
+  <div class="ni" onclick="nav('sessions')">
+    <div class="ni-bar"></div><div class="ni-icon">📊</div>
+    <div class="ni-lbl"><span data-ar>جلساتي</span><span data-en>Sessions</span></div>
+  </div>
+  <div class="ni" onclick="nav('chat')">
+    <div class="ni-bar"></div><div class="ni-icon">💬</div>
+    <div class="ni-lbl"><span data-ar>مساعد</span><span data-en>Chat</span></div>
+  </div>
+  <div class="ni" onclick="nav('profile')">
+    <div class="ni-bar"></div><div class="ni-icon">👤</div>
+    <div class="ni-lbl"><span data-ar>حسابي</span><span data-en>Account</span></div>
+  </div>
+</nav>
+</div>
+
+<script>
+// Splash
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('splash').classList.add('gone'),2300));
+
+// Lang
+let lang='ar';
+function setLang(l){
+  lang=l;
+  document.body.classList.toggle('en',l==='en');
+  document.getElementById('html-root').dir=l==='en'?'ltr':'rtl';
+  document.getElementById('html-root').lang=l;
+  document.getElementById('btn-ar').classList.toggle('on',l==='ar');
+  document.getElementById('btn-en').classList.toggle('on',l==='en');
+  document.querySelectorAll('[data-ar]').forEach(e=>e.style.display=l==='ar'?'':'none');
+  document.querySelectorAll('[data-en]').forEach(e=>e.style.display=l==='en'?'':'none');
+}
+// Init display
+document.querySelectorAll('[data-en]').forEach(e=>e.style.display='none');
+
+// Nav
+const pageMap={home:'p-home',booking:'p-booking',payment:'p-payment',sessions:'p-sessions',chat:'p-chat',profile:'p-profile'};
+const navMap={home:0,booking:1,sessions:2,chat:3,profile:4};
+function nav(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(x=>x.classList.remove('on'));
+  document.getElementById(pageMap[p]).classList.add('active');
+  if(navMap[p]!==undefined)document.querySelectorAll('.ni')[navMap[p]].classList.add('on');
+}
+
+// Mood
+function pickMood(el){document.querySelectorAll('.me').forEach(e=>e.classList.remove('on'));el.classList.add('on')}
+function pickT(el){document.querySelectorAll('.t-card').forEach(e=>e.classList.remove('on'));el.classList.add('on')}
+function pickDay(el){document.querySelectorAll('.cd').forEach(e=>e.classList.remove('sel'));el.classList.add('sel')}
+function pickTs(el){if(el.classList.contains('na'))return;document.querySelectorAll('.ts').forEach(e=>e.classList.remove('sel'));el.classList.add('sel')}
+function pickSt(el){document.querySelectorAll('.st').forEach(e=>e.classList.remove('on'));el.classList.add('on')}
+function pickPm(el){document.querySelectorAll('.pm').forEach(e=>e.classList.remove('on'));el.classList.add('on')}
+function switchTab(el){document.querySelectorAll('.s-tab').forEach(e=>e.classList.remove('on'));el.classList.add('on')}
+
+// Modals
+function openOv(id){document.getElementById(id).classList.add('open')}
+function closeOv(id){document.getElementById(id).classList.remove('open')}
+
+// Toast
+let tt;
+function showToast(msg){const t=document.getElementById('toast');t.innerHTML=msg;t.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('on'),2500)}
+function toast(m){showToast(m)}
+
+// Chat
+const replies_ar=['شكراً على تواصلك! سأساعدك بأفضل طريقة ممكن. 😊','سؤال رائع! يمكنك حجز جلسة لمناقشة هذا الأمر.','أتفهم مشاعرك تماماً. نحن هنا لدعمك.','لا تتردد في طرح أي أسئلة. صحتك النفسية تهمنا! 💙','يمكنك التواصل معنا على مدار الساعة عبر هذا الشات.'];
+const replies_en=['Thanks for reaching out! I\'m here to help. 😊','Great question! You can book a session to discuss this in detail.','I completely understand your feelings. We\'re here to support you.','Feel free to ask anything. Your mental health matters to us! 💙','You can reach us anytime through this chat.'];
+function sendK(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendChat()}}
+function sendChat(){
+  const inp=document.getElementById('c-in');
+  const txt=inp.value.trim();if(!txt)return;
+  const msgs=document.getElementById('chat-msgs');
+  const now=new Date().toLocaleTimeString('en',{hour:'2-digit',minute:'2-digit'});
+  msgs.innerHTML+=`<div class="msg in"><div class="msg-b">${txt}</div><div class="msg-t">${now}</div></div>`;
+  inp.value='';msgs.scrollTop=msgs.scrollHeight;
+  setTimeout(()=>{
+    const rs=lang==='en'?replies_en:replies_ar;
+    const r=rs[Math.floor(Math.random()*rs.length)];
+    msgs.innerHTML+=`<div class="msg out"><div class="msg-b">${r}</div><div class="msg-t">${now}</div></div>`;
+    msgs.scrollTop=msgs.scrollHeight;
+  },900);
+}
+
+// PWA Manifest
+const mf={name:'Cognitive Matrix',short_name:'CogMatrix',start_url:'/',display:'standalone',background_color:'#060810',theme_color:'#060810',orientation:'portrait'};
+const b=new Blob([JSON.stringify(mf)],{type:'application/json'});
+document.getElementById('manifest-link').href=URL.createObjectURL(b);
+</script>
+</body>
+</html>
